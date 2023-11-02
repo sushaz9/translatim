@@ -9,7 +9,7 @@ function App() {
 
   // store the word we want to translate in state
   const [word, setWord] = useState("");
-  const [translation, setTranslation] = useState({});
+  const [translation, setTranslation] = useState("");
 
   // onchange function for input of the word we want to translate
 
@@ -18,7 +18,7 @@ function App() {
     event.preventDefault();
     const API = `http://localhost:8080/translate?word=${word}&from=${from}&to=${to}`;
     const res = await axios.get(API);
-    console.log(res.data);
+    setTranslation(res.data.translation);
   }
 
   return (
@@ -46,9 +46,9 @@ function App() {
             <option value="es">Spanish</option>
             <option value="tr">Turkish</option>
           </select>
-          <input placeholder="Translate" />
+          <button>Submit</button>
+          <div className="output">{translation}</div>
         </div>
-        <button>Submit</button>
       </form>
 
       {/* show our translation  */}

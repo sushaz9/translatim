@@ -1,1 +1,37 @@
+body {
+  background-color: #81a8db;
+}
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px, 20px;
+  margin: 20px;
+}
+
+input {
+  padding: 10px 20px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: biqsue;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: bisque;
+  color: #81a8db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.output {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 36px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: bisque;
+}
