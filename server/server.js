@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 const axios = require("axios");
 
-app.get(PORT, (_, response) => response.json("Root route for translatim."));
+app.get("/", (_, response) => response.json("Root route for translatim."));
 
 // add your endpoints here
 
