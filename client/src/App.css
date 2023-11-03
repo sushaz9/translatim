@@ -1,5 +1,16 @@
 body {
   background-color: #81a8db;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header,
+h2,
+footer {
+  color: bisque;
+  padding: 20px;
+  text-align: center;
 }
 
 .container {
@@ -7,7 +18,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px, 20px;
+  padding: 20px;
   margin: 20px;
 }
 
@@ -21,6 +32,7 @@ input {
 
 button {
   padding: 10px 20px;
+  margin: 20px;
   background-color: bisque;
   color: #81a8db;
   border: none;
@@ -34,4 +46,10 @@ button {
   font-size: 36px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: bisque;
+}
+
+img {
+  width: 300px;
+  padding: 10px;
+  margin: 20px;
 }

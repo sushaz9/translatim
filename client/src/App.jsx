@@ -11,6 +11,7 @@ function App() {
   const [word, setWord] = useState("");
   const [translation, setTranslation] = useState("");
   const [image, setImage] = useState("");
+  const [gif, setGif] = useState("");
 
   // onchange function for input of the word we want to translate
 
@@ -21,10 +22,17 @@ function App() {
     const res = await axios.get(API);
     setTranslation(res.data.translation);
     setImage(res.data.image);
+    setGif(res.data.gif);
   }
 
   return (
     <>
+      <div className="app">
+        <header className="header">
+          <h1>Translatim</h1>
+        </header>
+        <h2>The easy to use translator app!</h2>
+      </div>
       <form onSubmit={handleTranslate}>
         <div className="container">
           <select onChange={(event) => setFrom(event.target.value)}>
@@ -52,7 +60,9 @@ function App() {
           <div className="output">{translation}</div>
         </div>
         <img src={image} />
+        <img src={gif} alt="GIF" />
       </form>
+      <footer className="footer">footer</footer>
 
       {/* show our translation  */}
       {/* STRETCH - show a gif from GIPHY API that matches translation */}

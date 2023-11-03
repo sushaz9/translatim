@@ -28,10 +28,16 @@ app.get("/translate", async (request, response) => {
   const unsplashRes = await axios.get(unsplashAPI);
   console.log(unsplashRes.data.results[0].urls.regular);
 
+  // make GIPHY api call
+  const giphyAPI = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_ACCESS_KEY}&q=${translatedRes.data.responseData.translatedText}`;
+  const giphyRes = await axios.get(giphyAPI);
+  console.log(giphyRes.data.data[0].images.original.url);
+
   const wrangledData = {
     translation: translatedRes.data.responseData.translatedText,
     match: translatedRes.data.responseData.match,
     image: unsplashRes.data.results[0].urls.regular,
+    giphy: giphyRes.data.data[0].images.original.url,
   };
 
   response.json(wrangledData);
