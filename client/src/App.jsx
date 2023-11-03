@@ -10,6 +10,7 @@ function App() {
   // store the word we want to translate in state
   const [word, setWord] = useState("");
   const [translation, setTranslation] = useState("");
+  const [image, setImage] = useState("");
 
   // onchange function for input of the word we want to translate
 
@@ -19,6 +20,7 @@ function App() {
     const API = `http://localhost:8080/translate?word=${word}&from=${from}&to=${to}`;
     const res = await axios.get(API);
     setTranslation(res.data.translation);
+    setImage(res.data.image);
   }
 
   return (
@@ -49,6 +51,7 @@ function App() {
           <button>Submit</button>
           <div className="output">{translation}</div>
         </div>
+        <img src={image} />
       </form>
 
       {/* show our translation  */}

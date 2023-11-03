@@ -19,49 +19,22 @@ app.get("/translate", async (request, response) => {
 
   const { word, from, to } = request.query;
 
-  // make api call
-  const API = `https://api.mymemory.translated.net/get?q=${word}&langpair=${from}|${to}`;
-  const res = await axios.get(API);
+  // make our translation api call
+  const translatedAPI = `https://api.mymemory.translated.net/get?q=${word}&langpair=${from}|${to}`;
+  const translatedRes = await axios.get(translatedAPI);
+
+  // make img api call
+  const unsplashAPI = `https://api.unsplash.com/search/photos?client_id=${process.env.UNSPLASH_ACCESS_KEY}&query=${translatedRes.data.responseData.translatedText}`;
+  const unsplashRes = await axios.get(unsplashAPI);
+  console.log(unsplashRes.data.results[0].urls.regular);
 
   const wrangledData = {
-    translation: res.data.responseData.translatedText,
-    match: res.data.responseData.match,
+    translation: translatedRes.data.responseData.translatedText,
+    match: translatedRes.data.responseData.match,
+    image: unsplashRes.data.results[0].urls.regular,
   };
 
   response.json(wrangledData);
 });
-
-/*
-const unsplashedAPI = axios.create ({
-baseUrl: "https://api.unsplash.com",
-headers: {
-  Authorization: `Client-ID ${9Tq8U9JelMExfKBsQtbmtF8VaHZ0CodqS6BdGM8aazc}`
-}
-});
-app.get("/api/translate", async (request, response) => {
-  const { word } = request.query;
-
-  const translated = await translate(word);
-});
-
-const unsplashResponse = await axios.get(
-  "https://api.unsplash.com/search/photos",
-  {
-    params: {
-      query: translated,
-      per_page: 1,
-    },
-  }
-);
-
-const img = unsplashResponse.data.results[0];
-
-res.json({
-  translatedWord: translated,
-  image: {
-    src: img.urls.regular,
-    alt: img.alt_description,
-  },
-});*/
 
 app.listen(PORT, () => console.log(`App is running PORT ${PORT}`));
